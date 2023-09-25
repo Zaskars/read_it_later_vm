@@ -1,0 +1,40 @@
+{% extends 'web/base.html' %}
+{% block style %}
+    <link href="{{ '/static/web/user_page.css' }}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block body %}
+    <br><br><br>
+    <div class="container">
+        <p>
+            <a href="{% url 'login_telegram' %}" target="_blank">
+                Привязать Telegram-аккаунт
+            </a>
+        </p>
+
+
+        <h3> Your Articles </h3>
+        {% load social_share %}
+        {% for a in articles %}
+
+            <div class='add'>
+                <div class="line">
+                    <a class='but' href="/media/{{ a.document_file }}" download="">{{ a.name }}</a>
+                    <a href="/delete/{{ a.id }}" class='delete'>delete</a>
+                </div>
+
+                <div class="line">
+                    <div class="social-share" style="display: flex; flex-direction: row; flex-wrap: nowrap; gap: 10px">
+                        <img class='image' src="/static/telegram.png"
+                             href="http://127.0.0.1:8000/media/articles/{{ a.document_file }}">
+                        {% post_to_telegram "http://127.0.0.1:8000/media/articles/{{ a.document_file }}" "" %}
+                        <img class='image' src="/static/whatsapp.png">
+                        {% post_to_whatsapp "http://127.0.0.1:8000/media/articles/"|add:a.document_file.name %}
+                        <img class='image' src="/static/mail.png">
+                        {% send_email "http://127.0.0.1:8000/media/articles/{{ a.document_file }}" "" %}
+                    </div>
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+{% endblock %}

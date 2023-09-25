@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "read-it-later"
+version = "0.1.0"
+description = ""
+authors = ["KamaL145 <niyaz.kamalov.21@gmail.com>"]
+readme = "README.md"
+packages = [{include = "read_it_later"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.12.0"
+pre-commit = "^2.20.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+

@@ -1,0 +1,16 @@
+{% extends 'web/form.html' %}
+{% block style %}
+    <link href="{{ '/static/web/registration.css' }}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block form %}
+        <h1>Регистрация</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary">Зарегистрироваться</button>
+        </form>
+<h3>Регистрация через сторонние сервисы</h3>
+<a style="float: left;margin-right: 15px" href="{% url "social:begin" "github" %}"><img class="GitHub" src="/static/Github.png"></a>
+<a href="/login/vk-oauth2"><img class='VK ' src="/static/Vk.png"></a>
+
+{% endblock %}

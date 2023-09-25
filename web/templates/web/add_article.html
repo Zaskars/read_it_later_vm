@@ -1,0 +1,35 @@
+{% extends 'web/form.html' %}
+{% load static %}
+{% block style %}
+    <link href="{{ '/static/web/add_article.css' }}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block form %}
+
+
+        <h1>Добавление статьи</h1>
+    <br>
+    {% if message %}
+        <b>{{ message }}</b>
+    {% endif %}
+
+    <center>
+        <input hidden id="user" value="{{ user }}">
+        <div id="app">Загрузка...</div>
+    </center>
+
+    {% load social_share %}
+    <div class="line" style="display: flex; margin-top: 380px">
+        <div class="social-share" style="display: flex; flex-direction: row; flex-wrap: nowrap; gap: 10px">
+            <img id='img1' src="/static/telegram.png"
+                 href="{% url 'files_add' %}">
+            {% post_to_telegram "http://127.0.0.1:8000/" "" %}
+            <img id='img1' src="/static/whatsapp.png">
+            {% post_to_whatsapp "http://127.0.0.1:8000/" %}
+            <img id='img1' src="/static/mail.png">
+            {% send_email "http://127.0.0.1:8000/" "" %}
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="{% static 'web/ril_frontend/dist/assets/index.css' %}">
+    <script type="module" src="{% static 'web/ril_frontend/dist/assets/index.js' %}"></script>
+{% endblock %}

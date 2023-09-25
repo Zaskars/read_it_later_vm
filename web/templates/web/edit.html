@@ -1,0 +1,16 @@
+{% extends 'web/form.html' %}
+
+{% block form %}
+        <h1>Редактирование</h1>
+    <br>
+
+    {% if form.errors %}
+        <b>Пожалуйста, исправьте ошибки:</b>
+        {{ form.errors }}
+    {% endif %}
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary">Изменить</button>
+        </form>
+{% endblock %}

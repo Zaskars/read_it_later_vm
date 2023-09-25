@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: read_it
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      DB_HOST=192:168:0:1:
+    ports:
+      - "5433:5432"
+    restart: always
+
+  web:
+    image: read_it_web
+    build:
+      context: .
+      dockerfile: deploy/app/Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    restart: always
+

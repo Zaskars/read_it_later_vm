@@ -1,0 +1,11 @@
+{% extends "web/base.html" %}
+{%  block style %}
+        <link href="{{ '/static/web/form.css' }}" rel="stylesheet" type="text/css">
+{%  endblock %}
+{% block body %}
+    <br><br><br>
+    <div class="container">
+        <br>
+        {% block form %}{% endblock %}
+    </div>
+{% endblock %}
